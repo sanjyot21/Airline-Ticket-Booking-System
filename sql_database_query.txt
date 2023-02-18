@@ -1,0 +1,77 @@
+sign_up table :
+
+mysql> create table sign_up(
+    -> id varchar(50) Primary Key,
+    -> password varchar(50) not null
+    -> );
+
+mysql> insert into sign_up values('akshansh.rawat@yahoo.com','1234');Query OK, 1 row affected (0.04 sec)
+mysql> insert into sign_up values('kevin@gmail.com','37841');Query OK, 1 row affected (0.00 sec)
+mysql> insert into sign_up values('rajat','1234');Query OK, 1 row affected (0.00 sec)
+mysql> insert into sign_up values('sanjyotchatarkar@gmail.com','32141');Query OK, 1 row affected (0.04 sec)
+mysql> insert into sign_up values('VivekDu@gmail.com','89841abc');Query OK, 1 row affected (0.04 sec)
+
+******************************************************************************************************************
+
+flights table :
+
+mysql> create table flights(
+    -> flight_id varchar(10) Primary Key,
+    -> flight_name varchar(30) not null,
+    -> origin varchar(20) not null,
+    -> destination varchar(20) not null,
+    -> departure_time varchar(20) not null,
+    -> arrival_time varchar(20) not null, 
+    -> date varchar(20) not null,
+    -> flight_charge int not null,
+    -> available_seats int not null
+    -> );
+
+mysql> insert into flights values('F-001',' Jet Airways',' Switzerland', 'India','08:00:00', '18:00:00','2021-05-26',50000,60);
+mysql> insert into flights values('F-002',' Jet Airways',' Switzerland', 'India', '06:00:00','16:00:00','2021-05-27’,50000,60);
+mysql> insert into flights values('F-003','Air India','India','Canada','08:00:00','14:00:00','2021-05-28',65000,60);
+mysql> insert into flights values('F-004','Air India','Canada','India','09:00:00','15:00:00','2021-05-28',65000,60);
+mysql> insert into flights values('F-005','SpiceJet','USA','India','05:00:00','15:00:00','2021-05-27',65000,60);
+
+******************************************************************************************************************
+
+customer table :
+
+mysql> create table customer(
+    -> customer_id varchar(10) Primary Key,
+    -> name varchar(30) not null,
+    -> passport_id varchar(20) not null,
+    -> address varchar(50) not null,
+    -> gender varchar(10) not null,
+    -> arrival_time varchar(20) not null, 
+    -> date_of_birth varchar(20) not null,
+    -> contact_number varchar(11) not null,
+    -> );
+
+mysql> insert into customer values('CO001','Sanjyot Chatarkar','F780233','14th Rajpur Road,Amravati,Maharashtra','Male','2001-05-09','9876329039');
+mysql> insert into customer values('CO002','Sakshi Rana','F780913','14th Rajpur Road,Dalanwala,Dehradun','Female','2001-05-11','9789329039’);
+mysql> insert into customer values('CO003','Ishu Yadav','F820913','14th Teg Bahadur Road,Dalanwala,Dehradun','Female','2000-05-11','8729329039');
+mysql> insert into customer values('CO004','Yash Dubey','F230913','14th Teg Bahadur Road,Dalanwala,Dehradun','Male','2000-09-15','8798329039’);
+mysql> insert into customer values('CO005','Kevin Gandhi','F430913','14th Ragpur Road,Gujarat','Male','2001-10-15','9798329039');
+
+******************************************************************************************************************
+
+ticket_reservation table :
+
+mysql> create table ticket_reservation(
+    -> seat_id varchar(15) Primary Key,
+    -> flight_id varchar(10) not null,
+    -> customer_id varchar(10) not null,
+    -> id varchar(50) not null,
+    -> foreign key(flight_id) refrences flights(flight_id),
+    -> foreign key(customer_id) refrences customer(customer_id),
+    -> foreign key(id) refrences sign_up(id),
+    -> );
+
+mysql> insert into ticket_reservation values('F-001-S01','F-001','CO001','akshansh.rawat@yahoo.com');
+​mysql> insert into ticket_reservation values('F-002-S01','F-002','CO002','akshansh.rawat@yahoo.com');
+mysql> insert into ticket_reservation values('F-003-S01','F-003','CO003','kevin@gmail.com'); 
+mysql> insert into ticket_reservation values('F-004-S01','F-004','CO004','kevin@gmail.com’);
+mysql> insert into ticket_reservation values('F-005-S01','F-005','CO005','akshansh.rawat@yahoo.com');
+
+******************************************************************************************************************
